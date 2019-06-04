@@ -1,0 +1,23 @@
+Just a file to store the basic structure of my models
+
+
+User
+--------
+twitchId: ID from twitch, the primary key and the main thing they will be using
+discordId: not required, they'll ahve to link their twitch ID to their discord ID using a bot command
+protonBlanace: amount of protons a user has
+viewTime: amount of time spent viewing the stream (maybe)
+twitchChatTotal: amount of messages sent in twitch chat (maybe)
+discordChatTotal: amount of discord messages sent (maybe)
+refrenceItems: a refrence to the table containing their items
+
+currencyShop (this is only for discord)
+--------------
+itemId: (ID of the purachasable item)
+name: name of the item
+type: the type of item, examples: discord role, color change, etc
+cost: the amount it costs to but the item
+expires: either null for no expiration, or a time that the item lasts
+limit: the amount of the item that can be owned at once
+stock: how much of the item is left, null for infinite amount.
+
