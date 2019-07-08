@@ -4,7 +4,13 @@
   "description": "node discord bot for the protonheart server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p tsconfig.build.json",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/index.ts",
+    "start:dev": "nodemon",
+    "start:prod": "node dist/index.js",
+    "lint": "tslint -p tsconfig.json -c tslint.json"
   },
   "repository": {
     "type": "git",
@@ -17,9 +23,16 @@
   },
   "homepage": "https://github.com/wolfers/protonbot-discord#readme",
   "dependencies": {
-    "discord.js": "^11.5.0"
+    "discord.js": "^11.5.1",
+    "sequelize": "^5.8.7",
+    "sqlite3": "^4.0.8"
   },
   "devDependencies": {
-    "eslint": "^5.16.0"
+    "eslint": "^5.16.0",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.17.1",
+    "tslint": "^5.17.0",
+    "typescript": "^3.5.1",
+    "ts-node": "^8.2.0"
   }
 }
