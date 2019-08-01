@@ -1,14 +1,14 @@
-import { Message, Collection } from "discord.js";
+import { Message } from "discord.js";
 
-export abstract class Command {
-    public name: string;
-    public description: string;
-    public usage: string;
-    public cooldown: number;
-    public args: boolean;
-    public guildOnly: boolean;
-    public permsLevel: number;
-    public aliases?: Array<string>;
+export interface Command {
+  name: string;
+  description: string;
+  usage: string;
+  cooldown: number;
+  args: boolean;
+  guildOnly: boolean;
+  permsLevel: number;
+  aliases?: Array<string>;
 
-    abstract execute(message: Message, args: Array<string>, commands?: Collection<string, any>)
+  run(message: Message, args: [string]): Promise<void>;
 }

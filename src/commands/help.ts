@@ -4,14 +4,17 @@ import { Command } from '../models/commands';
 import { CommandsCollection } from '../CommandHandler/commands'
 
 
-export class help extends Command {
-	name: 'help';
-	description: 'List all of my commands or info about a specific command.';
-	aliases: ['commands'];
-	usage: '[command name]';
-    cooldown: 5;
+export class help implements Command {
+	name = 'help';
+	description = 'List all of my commands or info about a specific command.';
+	aliases = ['commands'];
+	usage = '[command name]';
+    cooldown = 5;
+    guildOnly = false;
+    permsLevel = 0
+    args = true
     commands: Collection<string, Command> = CommandsCollection;
-	execute(message: Message, args: Array<string>) {
+	async run(message: Message, args: Array<string>): Promise<void> {
         const data = [];
 
         if (!args.length) {
@@ -34,7 +37,8 @@ export class help extends Command {
         const command = this.commands.get(name) || this.commands.find(c => c.aliases && c.aliases.includes(name));
 
         if (!command) {
-            return message.reply('that\'s not a valid command!');
+            message.reply('that\'s not a valid command!');
+            return;
         }
 
         data.push(`**Name:** ${command.name}`);
@@ -44,5 +48,6 @@ export class help extends Command {
         if (command.usage) data.push(`**Usage:** ${config.prefix}${command.name} ${command.usage}`);
 
         message.channel.send(data, { split: true });
+        return;
 	};
 };
